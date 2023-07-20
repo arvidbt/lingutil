@@ -7,7 +7,7 @@ const swedish_words = new Map(Object.entries(wordlist[0]));
  * Checks if a word used as argument is a swedish word.
  * 
  * ### Example:
- * Providing the word ``qwerty`` returns ``false``,
+ * Providing the word ``qwerty`` returns ```false``,
  * providing the word ``fika`` returns ``true``.
  * @param word Word to check, as a string.
  * @returns True if the word is a swedish word, false otherwise.
@@ -22,7 +22,10 @@ const isWord = (word: string): boolean => {
  * ### Example: 
  * Providing the letters ``est``, the following words are generated:
  * 
- * ``['e',  'est', 's', 'se', 'set', 't', 'te', 'tes']``.
+ * 
+ ```json
+    ['e',  'est', 's', 'se', 'set', 't', 'te', 'tes']
+ ```
  * @param letters Letters to check, as a string.
  * @returns A list of words.
  */
@@ -57,50 +60,50 @@ const getWordsContaining = (letters: string): string[] => {
  * ### Example: 
  * Providing the word ``funktionell`` returns the list: 
  * 
- * ``[
-  'funktionella',
-  'funktionellare',
-  'funktionellast',
-  'funktionellaste',
-  'funktionellt'
- * ]``
+ * ```json
+    ['funktionella', 'funktionellare', 'funktionellast', 'funktionellaste', 'funktionellt']
+  ```
  * @param word A word, as a string.
  * @returns A list of words.
  */
 const getWordsStartingWith = (word: string): string[] => {
     return [...swedish_words.entries()]
-    .filter(([key, _]) => key.startsWith(word.toLowerCase()) && key.toLowerCase() !== word.toLowerCase())
-    .map(([key, _]) => key);}
+        .filter(([key, _]) => key.startsWith(word.toLowerCase()) && key.toLowerCase() !== word.toLowerCase())
+        .map(([key, _]) => key);
+}
 
 /**
  * Returns a list of words *ending with** the word provided as an argument.
  * 
  * ### Example:
- * Providing the word ``funktionell`` returns the list:
- * 
- * ``[ 'dysfunktionell']``
+ * Providing the word ``funktionell`` to the function results in the list:
+ ```json
+ [ 'dysfunktionell']
+ ```
  * @param word A word, as a string.
  * @returns A list of words.
  */
 const getWordsEndingWith = (word: string): string[] => {
     return [...swedish_words.entries()]
-    .filter(([key, _]) => key.endsWith(word.toLowerCase()) && key.toLowerCase() !== word.toLowerCase())
-    .map(([key, _]) => key);}
+        .filter(([key, _]) => key.endsWith(word.toLowerCase()) && key.toLowerCase() !== word.toLowerCase())
+        .map(([key, _]) => key);
+}
 
 /**
  * Returns a list of words that are of length ``n``.
  * 
  * ### Example:
- * Providing 35 as n, the following words are returned:
+ * Providing ``35`` as ``n`` results in the following words:
  * 
- * ``[
-  'satellitkommunikationsutrustningars',
-  'satellitkommunikationsutrustningens'
-*  ]``
+ ```json
+[
+  'satellitkommunikationsutrustningars', satellitkommunikationsutrustningens'
+]
+```
  * @param len_n Length of word, as a number,
- * @returns 
+ * @returns A list of words.
  */
-const getWordOfLengthN = (len_n: number): string[] => {
+const getWordsOfLengthN = (len_n: number): string[] => {
     const result = [];
     for (const word of swedish_words.keys()) {
         if (word.length == len_n) {
@@ -109,4 +112,11 @@ const getWordOfLengthN = (len_n: number): string[] => {
     }
     return result;
 }
-console.log(getWordOfLengthN(35))
+
+export {
+    isWord,
+    getWordsContaining,
+    getWordsStartingWith,
+    getWordsEndingWith,
+    getWordsOfLengthN
+};
