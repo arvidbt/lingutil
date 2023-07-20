@@ -5,6 +5,10 @@ const swedish_words = new Map(Object.entries(wordlist[0]));
 
 /**
  * Checks if a word used as argument is a swedish word.
+ * 
+ * ### Example:
+ * Providing the word ``qwerty`` returns ``false``,
+ * providing the word ``fika`` returns ``true``.
  * @param word Word to check, as a string.
  * @returns True if the word is a swedish word, false otherwise.
  */
