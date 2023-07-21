@@ -109,5 +109,3 @@ export {
     getWordsEndingWith,
     getWordsOfLengthN
 };
-
-console.log(getWordsStartingWith("funktionell"))
