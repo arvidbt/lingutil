@@ -1,4 +1,4 @@
-import { countDistinctChars } from "./utils/utils";
+import { isSubset } from "./utils/utils";
 import wordlist from "./data/swe_wordlist";
 
 const swedish_words = new Map(Object.entries(wordlist[0]));
@@ -30,27 +30,21 @@ const isWord = (word: string): boolean => {
  * @returns A list of words.
  */
 const getWordsContaining = (letters: string): string[] => {
-    const sortedLetters = letters.toLowerCase().split('').sort();
+    const sortedLetters = letters.toLowerCase().split('').sort().join('');
     const result = [];
 
     for (const word of swedish_words.keys()) {
-        let matches = 0;
-        let sortedWord = [...word].sort().join('');
-        if (sortedWord.length <= sortedLetters.length) {
-            const charDiff = countDistinctChars(word, sortedLetters);
-            if (charDiff === 0) {
-                for (const letter of sortedLetters) {
-                    if (sortedWord.includes(letter)) {
-                        sortedWord = sortedWord.slice(1);
-                        matches += 1;
-                    }
-                }
-                if (matches === word.length) {
-                    result.push(word);
-                }
-            }
+
+        if (word.length > sortedLetters.length) {
+            return result;
+        }
+
+        const sortedWord = [...word].sort().join('');
+        if (sortedWord.length <= sortedLetters.length && isSubset(sortedWord, sortedLetters)) {
+            result.push(word);
         }
     }
+
     return result;
 }
 
@@ -104,13 +98,8 @@ const getWordsEndingWith = (word: string): string[] => {
  * @returns A list of words.
  */
 const getWordsOfLengthN = (len_n: number): string[] => {
-    const result = [];
-    for (const word of swedish_words.keys()) {
-        if (word.length == len_n) {
-            result.push(word);
-        }
-    }
-    return result;
+    const words = Array.from(swedish_words.keys());
+    return words.filter(word => word.length === len_n);
 }
 
 export {
@@ -120,3 +109,5 @@ export {
     getWordsEndingWith,
     getWordsOfLengthN
 };
+
+console.log(getWordsStartingWith("funktionell"))
