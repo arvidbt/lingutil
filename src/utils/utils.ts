@@ -1,13 +1,9 @@
-const isSubset = (subset: string, set: string): boolean => {
-    let j = 0;
-    for (let i = 0; i < set.length && j < subset.length; i++) {
-        if (subset[j] === set[i]) {
-            j++;
-        }
+export const isSubset = (subset: string, set: string): boolean => {
+  let match = 0;
+  for (let wordIndex = 0; wordIndex < set.length && match < subset.length; wordIndex++) {
+    if (subset[match] === set[wordIndex]) {
+      match++;
     }
-    return j === subset.length;
-}
-
-export {
-    isSubset,
-}
+  }
+  return match === subset.length;
+};
