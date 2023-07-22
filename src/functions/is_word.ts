@@ -10,7 +10,8 @@ import sv_dictionary from "../data/sv_dictionary.json";
  * @returns True if the word is a swedish word, false otherwise.
  */
 export const isWord = (word: string, language: string): boolean => {
-  const wordList = language === "sv" ? sv_dictionary : en_dictionary;
+  const json = language === "sv" ? sv_dictionary : en_dictionary;
+  const wordList = new Map(Object.entries(json));
 
-  return word.toLowerCase() in wordList;
+  return wordList.has(word.toLowerCase())
 };

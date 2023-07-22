@@ -18,11 +18,12 @@ export const getWordsContaining = (
   letters: string,
   language: string
 ): string[] => {
-  const wordList = language === "sv" ? sv_dictionary : en_dictionary;
+  const json = language === "sv" ? sv_dictionary : en_dictionary;
+  const wordList = new Map(Object.entries(json));
   const sortedLetters = letters.toLowerCase().split("").sort().join("");
   const result = [];
 
-  for (const word in wordList) {
+  for (const word of wordList.keys()) {
     if (word.length > sortedLetters.length) {
       return result;
     }

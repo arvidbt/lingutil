@@ -5,7 +5,7 @@ import { getWordsEndingWith } from "./get_words_ending_with";
 import { getWordsOfLengthN } from "./get_words_of_length_n";
 
 
-console.log(getWordsContaining("est", "sv"))
+console.log(getWordsContaining("hello", "en"))
 
 
 export {

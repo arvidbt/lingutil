@@ -19,7 +19,7 @@ export const getWordsOfLengthN = (
   len_n: number,
   language: string
 ): string[] => {
-  const wordList = language === "sv" ? sv_dictionary : en_dictionary;
-  const words = Object.keys(wordList);
-  return words.filter((word) => word.length === len_n);
+  const json = language === "sv" ? sv_dictionary : en_dictionary;
+  const wordList = new Map(Object.entries(json));
+  return Array.from(wordList.keys()).filter((word) => word.length === len_n);
 };

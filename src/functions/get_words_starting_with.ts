@@ -17,8 +17,9 @@ export const getWordsStartingWith = (
   word: string,
   language: string
 ): string[] => {
-  const wordList = language === "sv" ? sv_dictionary : en_dictionary;
-  return Object.entries(wordList)
+  const json = language === "sv" ? sv_dictionary : en_dictionary;
+  const wordList = new Map(Object.entries(json));
+  return [...wordList.entries()]
     .filter(
       ([key, _]) =>
         key.startsWith(word.toLowerCase()) &&
