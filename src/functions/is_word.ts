@@ -1,4 +1,5 @@
-import { swedish_words } from "../data/swe_wordlist";
+import en_dictionary from "../data/en_dictionary.json";
+import sv_dictionary from "../data/sv_dictionary.json";
 /**
  * Checks if a word used as argument is a swedish word.
  *
@@ -8,6 +9,8 @@ import { swedish_words } from "../data/swe_wordlist";
  * @param word Word to check, as a string.
  * @returns True if the word is a swedish word, false otherwise.
  */
-export const isWord = (word: string): boolean => {
-  return swedish_words.has(word.toLowerCase());
+export const isWord = (word: string, language: string): boolean => {
+  const wordList = language === "sv" ? sv_dictionary : en_dictionary;
+
+  return word.toLowerCase() in wordList;
 };

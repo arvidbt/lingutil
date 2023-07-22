@@ -1,4 +1,6 @@
-import { swedish_words } from "../data/swe_wordlist";
+import en_dictionary from "../data/en_dictionary.json";
+import sv_dictionary from "../data/sv_dictionary.json";
+
 /**
  * Returns a list of words *ending with** the word provided as an argument.
  * 
@@ -10,8 +12,12 @@ import { swedish_words } from "../data/swe_wordlist";
  * @param word A word, as a string.
  * @returns A list of words.
  */
-export const getWordsEndingWith = (word: string): string[] => {
-  return [...swedish_words.entries()]
+export const getWordsEndingWith = (
+  word: string,
+  language: string
+): string[] => {
+  const wordList = language === "sv" ? sv_dictionary : en_dictionary;
+  return Object.entries(wordList)
     .filter(
       ([key, _]) =>
         key.endsWith(word.toLowerCase()) &&

@@ -5,15 +5,15 @@ import { getWordsEndingWith } from "../functions/get_words_ending_with";
 import { getWordsOfLengthN } from "../functions/get_words_of_length_n";
 
 describe("isWord", () => {
-  test("it should return false when presented a non-swedish word", () => {
+  test("it should return false when presented a non-swedish word when toggled to swedish", () => {
     const word = "english";
-    const result = isWord(word);
+    const result = isWord(word, 'sv');
     expect(result).toBeFalsy();
   });
 
-  test("it should return true when presented a swedish word", () => {
+  test("it should return true when presented a swedish word when toggled to swedish", () => {
     const word = "svenska";
-    const result = isWord(word);
+    const result = isWord(word, 'sv');
     expect(result).toBeTruthy();
   });
 });
@@ -21,13 +21,13 @@ describe("isWord", () => {
 describe("getWordsContaining", () => {
   test("it should return all words possible from letters 'est'", () => {
     const letters = "est";
-    const result = getWordsContaining(letters);
+    const result = getWordsContaining(letters, 'sv');
     expect(result).toEqual(["e", "s", "t", "se", "te", "est", "set", "tes"]);
   });
 
   test("it should return no words", () => {
     const letters = "";
-    const result = getWordsContaining(letters);
+    const result = getWordsContaining(letters, 'sv');
     expect(result).toEqual([]);
   });
 });
@@ -35,7 +35,7 @@ describe("getWordsContaining", () => {
 describe("getWordsStartingWith", () => {
   test("it should get all words beginning with the word 'funktionell'", () => {
     const word = "funktionell";
-    const result = getWordsStartingWith(word);
+    const result = getWordsStartingWith(word, 'sv');
     expect(result).toEqual([
       "funktionella",
       "funktionellt",
@@ -47,7 +47,7 @@ describe("getWordsStartingWith", () => {
 
   test("it should not return the word provided as argument", () => {
     const word = "funktionell";
-    const result = getWordsStartingWith(word);
+    const result = getWordsStartingWith(word, 'sv');
     expect(result).not.toContain(word);
   });
 });
@@ -55,13 +55,13 @@ describe("getWordsStartingWith", () => {
 describe("getWordsEndingWith", () => {
   test("it should get all words ending with the word 'funktionell'", () => {
     const word = "funktionell";
-    const result = getWordsEndingWith(word);
+    const result = getWordsEndingWith(word, 'sv');
     expect(result).toEqual(["dysfunktionell"]);
   });
 
   test("it should not return the word provided as argument", () => {
     const word = "funktionell";
-    const result = getWordsEndingWith(word);
+    const result = getWordsEndingWith(word, 'sv');
     expect(result).not.toContain(word);
   });
 });
@@ -69,7 +69,7 @@ describe("getWordsEndingWith", () => {
 describe("getWordsOfLengthN", () => {
   test("it should return all words of length 35", () => {
     const len = 35;
-    const result = getWordsOfLengthN(len);
+    const result = getWordsOfLengthN(len, 'sv');
     expect(result).toEqual([
       "satellitkommunikationsutrustningars",
       "satellitkommunikationsutrustningens",
@@ -78,7 +78,7 @@ describe("getWordsOfLengthN", () => {
 
   test("it should not return any words of length 0", () => {
     const len = 0;
-    const result = getWordsOfLengthN(len);
+    const result = getWordsOfLengthN(len, 'sv');
     expect(result).toEqual([]);
   });
 });

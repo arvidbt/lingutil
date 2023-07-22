@@ -1,4 +1,5 @@
-import { swedish_words } from "../data/swe_wordlist";
+import en_dictionary from "../data/en_dictionary.json";
+import sv_dictionary from "../data/sv_dictionary.json";
 import { isSubset } from "../utils/utils";
 /**
  * Returns a list of swedish words that contains the letters provided as an argument.
@@ -13,11 +14,15 @@ import { isSubset } from "../utils/utils";
  * @param letters Letters to check, as a string.
  * @returns A list of words.
  */
-export const getWordsContaining = (letters: string): string[] => {
+export const getWordsContaining = (
+  letters: string,
+  language: string
+): string[] => {
+  const wordList = language === "sv" ? sv_dictionary : en_dictionary;
   const sortedLetters = letters.toLowerCase().split("").sort().join("");
   const result = [];
 
-  for (const word of swedish_words.keys()) {
+  for (const word in wordList) {
     if (word.length > sortedLetters.length) {
       return result;
     }

@@ -1,4 +1,6 @@
-import { swedish_words } from "../data/swe_wordlist";
+import en_dictionary from "../data/en_dictionary.json";
+import sv_dictionary from "../data/sv_dictionary.json";
+
 /**
  * Returns a list of words that are of length ``n``.
  * 
@@ -13,7 +15,11 @@ import { swedish_words } from "../data/swe_wordlist";
  * @param len_n Length of word, as a number,
  * @returns A list of words.
  */
-export const getWordsOfLengthN = (len_n: number): string[] => {
-  const words = Array.from(swedish_words.keys());
+export const getWordsOfLengthN = (
+  len_n: number,
+  language: string
+): string[] => {
+  const wordList = language === "sv" ? sv_dictionary : en_dictionary;
+  const words = Object.keys(wordList);
   return words.filter((word) => word.length === len_n);
 };
