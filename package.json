@@ -1,5 +1,5 @@
 {
-  "name": "@kodverk/swedish-words",
+  "name": "words",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
