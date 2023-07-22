@@ -1,6 +1,5 @@
-import en_dictionary from "../data/en_dictionary.json";
-import sv_dictionary from "../data/sv_dictionary.json";
-
+import { sv_wordlist } from "../data/sv_dictionary";
+import { en_wordlist } from "../data/en_dictionary";
 /**
  * Returns a list of words **starting** with the word provided as an argument.
  * 
@@ -17,8 +16,7 @@ export const getWordsStartingWith = (
   word: string,
   language: string
 ): string[] => {
-  const json = language === "sv" ? sv_dictionary : en_dictionary;
-  const wordList = new Map(Object.entries(json));
+  const wordList = language === "sv" ? sv_wordlist : en_wordlist;
   return [...wordList.entries()]
     .filter(
       ([key, _]) =>

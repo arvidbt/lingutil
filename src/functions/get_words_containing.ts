@@ -1,5 +1,5 @@
-import en_dictionary from "../data/en_dictionary.json";
-import sv_dictionary from "../data/sv_dictionary.json";
+import { sv_wordlist } from "../data/sv_dictionary";
+import { en_wordlist } from "../data/en_dictionary";
 import { isSubset } from "../utils/utils";
 /**
  * Returns a list of swedish words that contains the letters provided as an argument.
@@ -18,8 +18,7 @@ export const getWordsContaining = (
   letters: string,
   language: string
 ): string[] => {
-  const json = language === "sv" ? sv_dictionary : en_dictionary;
-  const wordList = new Map(Object.entries(json));
+  const wordList = language === "sv" ? sv_wordlist : en_wordlist;
   const sortedLetters = letters.toLowerCase().split("").sort().join("");
   const result: string[] = [];
 

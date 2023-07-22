@@ -1,5 +1,5 @@
-import en_dictionary from "../data/en_dictionary.json";
-import sv_dictionary from "../data/sv_dictionary.json";
+import { sv_wordlist } from "../data/sv_dictionary";
+import { en_wordlist } from "../data/en_dictionary";
 /**
  * Checks if a word used as argument is a swedish word.
  *
@@ -10,17 +10,6 @@ import sv_dictionary from "../data/sv_dictionary.json";
  * @returns True if the word is a swedish word, false otherwise.
  */
 export const isWord = (word: string, language: string): boolean => {
-  const json = language === "sv" ? sv_dictionary : en_dictionary;
-  const wordList = new Map(Object.entries(json));
-
+  const wordList = language === "sv" ? sv_wordlist : en_wordlist;
   return wordList.has(word.toLowerCase())
 };
-
-// How to fix top-level await?
-// export const isWord = async (word: string, language: string): Promise<boolean> => {
-//   const json = language === "sv"
-//     ? await import("../data/sv_dictionary.json")
-//     : await import("../data/en_dictionary.json");
-//   const wordList = new Map(Object.entries(json));
-//   return wordList.has(word.toLowerCase());
-// };
