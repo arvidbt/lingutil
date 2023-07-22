@@ -15,3 +15,12 @@ export const isWord = (word: string, language: string): boolean => {
 
   return wordList.has(word.toLowerCase())
 };
+
+// How to fix top-level await?
+// export const isWord = async (word: string, language: string): Promise<boolean> => {
+//   const json = language === "sv"
+//     ? await import("../data/sv_dictionary.json")
+//     : await import("../data/en_dictionary.json");
+//   const wordList = new Map(Object.entries(json));
+//   return wordList.has(word.toLowerCase());
+// };

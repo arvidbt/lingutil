@@ -21,7 +21,7 @@ export const getWordsContaining = (
   const json = language === "sv" ? sv_dictionary : en_dictionary;
   const wordList = new Map(Object.entries(json));
   const sortedLetters = letters.toLowerCase().split("").sort().join("");
-  const result = [];
+  const result: string[] = [];
 
   for (const word of wordList.keys()) {
     if (word.length > sortedLetters.length) {
