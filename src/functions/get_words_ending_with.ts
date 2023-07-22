@@ -13,7 +13,7 @@ import { en_wordlist } from "../data/en_dictionary";
  */
 export const getWordsEndingWith = (
   word: string,
-  language: string
+  language: "sv" | "en"
 ): string[] => {
   const wordList = language === "sv" ? sv_wordlist : en_wordlist;
   return [...wordList.entries()]

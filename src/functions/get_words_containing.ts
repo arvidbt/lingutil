@@ -16,7 +16,7 @@ import { isSubset } from "../utils/utils";
  */
 export const getWordsContaining = (
   letters: string,
-  language: string
+  language: "sv" | "en"
 ): string[] => {
   const wordList = language === "sv" ? sv_wordlist : en_wordlist;
   const sortedLetters = letters.toLowerCase().split("").sort().join("");

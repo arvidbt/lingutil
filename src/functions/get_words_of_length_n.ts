@@ -16,7 +16,7 @@ import { en_wordlist } from "../data/en_dictionary";
  */
 export const getWordsOfLengthN = (
   len_n: number,
-  language: string
+  language: "sv" | "en"
 ): string[] => {
   const wordList = language === "sv" ? sv_wordlist : en_wordlist;
   return Array.from(wordList.keys()).filter((word) => word.length === len_n);
