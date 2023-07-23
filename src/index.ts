@@ -3,8 +3,9 @@ import { getWordsContaining } from "./functions/get_words_containing";
 import { getWordsStartingWith } from "./functions/get_words_starting_with";
 import { getWordsEndingWith } from "./functions/get_words_ending_with";
 import { getWordsOfLengthN } from "./functions/get_words_of_length_n";
-
-console.log(getWordsContaining("aj", "sv"))
+import { getSimilarWords } from "./functions/get_similiar_words";
+import { getAnagrams } from "./functions/get_anagrams";
+import { getPalindromes } from "./functions/get_palindromes";
 
 export {
   isWord,
@@ -12,4 +13,7 @@ export {
   getWordsStartingWith,
   getWordsEndingWith,
   getWordsOfLengthN,
+  getSimilarWords,
+  getAnagrams,
+  getPalindromes,
 };
