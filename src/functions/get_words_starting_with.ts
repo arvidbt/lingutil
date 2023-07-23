@@ -1,5 +1,4 @@
-import { sv_wordlist } from "../data/sv_dictionary";
-import { en_wordlist } from "../data/en_dictionary";
+import { pickDictionary } from "../utils/utils";
 /**
  * Returns a list of words **starting** with the word provided as an argument.
  * 
@@ -16,12 +15,10 @@ export const getWordsStartingWith = (
   word: string,
   language: "sv" | "en"
 ): string[] => {
-  const wordList = language === "sv" ? sv_wordlist : en_wordlist;
-  return [...wordList.entries()]
-    .filter(
-      ([key, _]) =>
-        key.startsWith(word.toLowerCase()) &&
-        key.toLowerCase() !== word.toLowerCase()
-    )
-    .map(([key, _]) => key);
+  const wordList = pickDictionary(language);
+  return wordList.filter(
+    (key) =>
+      key.startsWith(word.toLowerCase()) &&
+      key.toLowerCase() !== word.toLowerCase()
+  );
 };
