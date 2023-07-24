@@ -1,4 +1,3 @@
-import { de_wordlist } from "../data/de_dictionary";
 import { en_wordlist } from "../data/en_dictionary";
 import { sv_wordlist } from "../data/sv_dictionary";
 
