@@ -6,6 +6,7 @@ import { getWordsOfLengthN } from "./functions/get_words_of_length_n";
 import { getSimilarWords } from "./functions/get_similiar_words";
 import { getAnagrams } from "./functions/get_anagrams";
 import { getPalindromes } from "./functions/get_palindromes";
+import { isSimilar } from "./functions/is_similar";
 
 export {
   isWord,
@@ -16,4 +17,5 @@ export {
   getSimilarWords,
   getAnagrams,
   getPalindromes,
+  isSimilar
 };

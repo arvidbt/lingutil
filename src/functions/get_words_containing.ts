@@ -1,17 +1,5 @@
 import { isSubset, pickDictionary, sortString } from "../utils/utils";
-/**
- * Returns a list of swedish words that contains the letters provided as an argument.
- * 
- * ### Example: 
- * Providing the letters ``est``, the following words are generated:
- * 
- * 
- ```json
-    ['e',  'est', 's', 'se', 'set', 't', 'te', 'tes']
- ```
- * @param letters Letters to check, as a string.
- * @returns A list of words.
- */
+
  export const getWordsContaining = (
   letters: string,
   language: "sv" | "en"
