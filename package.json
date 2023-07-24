@@ -3,6 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
+  "keywords": [
+    "swedish",
+    "english",
+    "german",
+    "french",
+    "spanish",
+    "levenshtein",
+    "levenshtein distance",
+    "palindrome",
+    "anagram",
+    "words",
+    "similarity",
+    "starting with",
+    "ending with",
+    "linguistics"
+  ],
   "scripts": {
     "test": "jest --verbose --detectOpenHandles -i"
   },
