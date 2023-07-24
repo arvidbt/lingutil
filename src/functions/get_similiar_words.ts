@@ -1,4 +1,5 @@
-import { levenshteinDistance, pickDictionary } from "../utils/utils";
+import { pickDictionary } from "../utils/utils";
+import { isSimilar } from "./is_similar";
 
 export const getSimilarWords = (
   word: string,
@@ -9,6 +10,6 @@ export const getSimilarWords = (
   }
   const wordlist = pickDictionary(language);
   return wordlist.filter(
-    (similarWord) => levenshteinDistance(word, similarWord) <= 2
+    (similarWord) => isSimilar(word, similarWord)
   );
 };
