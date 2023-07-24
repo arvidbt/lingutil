@@ -1,8 +1,8 @@
-import { getWordsStartingWith } from "../functions/get_words_starting_with";
+import { WordLib } from "..";
 
 describe("getWordsStartingWith", () => {
   test("it should get all words beginning with the word 'funktionell'", () => {
-    const result = getWordsStartingWith("funktionell", "sv");
+    const result = new WordLib("sv").startsWith("funktionell");
     expect(result).toEqual([
       "funktionella",
       "funktionellt",
@@ -13,7 +13,7 @@ describe("getWordsStartingWith", () => {
   });
 
   test("it should not return the word provided as argument", () => {
-    const result = getWordsStartingWith("funktionell", "sv");
+    const result = new WordLib("sv").startsWith("funktionell");
     expect(result).not.toContain("funktionell");
   });
 });

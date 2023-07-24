@@ -1,8 +1,7 @@
-import { getWordsOfLengthN } from "../functions/get_words_of_length_n";
-
+import { WordLib } from "..";
 describe("getWordsOfLengthN", () => {
   test("it should return all words of length 35", () => {
-    const result = getWordsOfLengthN(35, 'sv');
+    const result = new WordLib("sv").ofLength(35);
     expect(result).toEqual([
       "satellitkommunikationsutrustningars",
       "satellitkommunikationsutrustningens",
@@ -10,7 +9,7 @@ describe("getWordsOfLengthN", () => {
   });
 
   test("it should not return any words of length 0", () => {
-    const result = getWordsOfLengthN(0, 'sv');
+    const result = new WordLib("sv").ofLength(0);
     expect(result).toEqual([]);
   });
 });
