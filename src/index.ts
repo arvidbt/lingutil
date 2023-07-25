@@ -12,8 +12,13 @@ import { pickDictionary } from "./utils/utils";
 
 class WordLib {
   private dictionary: string[];
-  constructor(language: "sv" | "en", customDictionary?: string[]) {
-    this.dictionary = customDictionary ? customDictionary : pickDictionary(language);
+  constructor(language?: "sv" | "en", customDictionary?: string[]) {
+    if (!language && !customDictionary) {
+      throw new Error("At least one of 'language' or 'customDictionary' must be supplied.");
+    }
+
+    // defaults to english.
+    this.dictionary = customDictionary ? customDictionary : pickDictionary(language || "en");
   }
 
   /**
