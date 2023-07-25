@@ -94,4 +94,6 @@ class WordLib {
   }
 }
 
-module.exports = WordLib;
+export {
+  WordLib
+}

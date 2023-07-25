@@ -2,7 +2,7 @@
   "name": "wordlib",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "keywords": [
     "swedish",
     "english",
@@ -20,7 +20,8 @@
     "linguistics"
   ],
   "scripts": {
-    "test": "jest --verbose --detectOpenHandles -i"
+    "test": "jest --verbose --detectOpenHandles -i",
+    "build": "tsc"
   },
   "author": "arvidbt",
   "license": "MIT",
