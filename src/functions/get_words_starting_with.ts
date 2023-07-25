@@ -2,7 +2,7 @@ import { pickDictionary } from "../utils/utils";
 
 export const getWordsStartingWith = (
   word: string,
-  language: "sv" | "en"
+  language: "sv" | "en" | "fr" | "es"
 ): string[] => {
   const wordList = pickDictionary(language);
   return wordList.filter(

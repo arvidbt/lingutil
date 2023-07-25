@@ -1,6 +1,6 @@
 import { pickDictionary, getRandomArrayIndex } from "../utils/utils";
 
-export const getRandomWord = (language: "sv" | "en", length?: number): string => {
+export const getRandomWord = (language: "sv" | "en" | "fr" | "es", length?: number): string => {
     const wordlist = pickDictionary(language);
     if (length) {
         const wordsOfLength = wordlist.filter(word => word.length === length);

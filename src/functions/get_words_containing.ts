@@ -2,7 +2,7 @@ import { isSubset, pickDictionary, sortString } from "../utils/utils";
 
  export const getWordsContaining = (
   letters: string,
-  language: "sv" | "en",
+  language: "sv" | "en" | "fr" | "es",
   length?: number
 ): string[] => {
   const wordList = pickDictionary(language)

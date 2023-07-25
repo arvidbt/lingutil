@@ -1,15 +1,15 @@
 import { pickDictionary } from "../utils/utils";
-import { isSimilar } from "./is_similar";
+import { similar } from "./is_similar";
 
 export const getSimilarWords = (
   word: string,
-  language: "sv" | "en"
+  language: "sv" | "en" | "fr" | "es"
 ): string[] => {
   if (word.trim().length == 0) {
     return [];
   }
   const wordlist = pickDictionary(language);
   return wordlist.filter(
-    (similarWord) => isSimilar(word, similarWord)
+    (similarWord) => similar(word, similarWord)
   );
 };

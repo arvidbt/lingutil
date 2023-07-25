@@ -6,7 +6,7 @@ import { getWordsOfLengthN } from "./functions/get_words_of_length_n";
 import { getSimilarWords } from "./functions/get_similiar_words";
 import { getAnagrams } from "./functions/get_anagrams";
 import { getPalindromes } from "./functions/get_palindromes";
-import { isSimilar } from "./functions/is_similar";
+import { similar } from "./functions/is_similar";
 import { getRandomWord } from "./functions/get_random_word";
 
 class WordLib {
@@ -75,8 +75,8 @@ class WordLib {
   /**
    * Checks if two strings are similar.
    */
-  similar(word1: string, word2: string): boolean {
-    return isSimilar(word1, word2);
+  isSimilar(word1: string, word2: string): boolean {
+    return similar(word1, word2);
   }
 
   /**

@@ -1,7 +1,7 @@
 import { pickDictionary } from "../utils/utils";
 
 export const getPalindromes = (
-  language: "sv" | "en",
+  language: "sv" | "en" | "fr" | "es",
   length?: number
 ): string[] => {
   const wordlist = pickDictionary(language);
