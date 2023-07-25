@@ -1,4 +1,4 @@
-import { WordLib } from "..";
+import { WordLib } from "../src";
 
 describe("isWord", () => {
   test("it should return false when presented a non-swedish word when toggled to swedish", () => {

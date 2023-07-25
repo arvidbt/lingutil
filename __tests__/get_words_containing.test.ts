@@ -1,4 +1,4 @@
-import { WordLib } from "..";
+import { WordLib } from "../src";
 describe("getWordsContaining", () => {
   test("it should return all words possible from letters 'est'", () => {
     const result = new WordLib("sv").containing("est");

@@ -1,7 +1,9 @@
-import { en_wordlist } from "../data/en_dictionary";
-import { es_wordlist } from "../data/es_dictionary";
-import { fr_wordlist } from "../data/fr_dictionary";
-import { sv_wordlist } from "../data/sv_dictionary";
+import {
+  es_wordlist,
+  en_wordlist,
+  fr_wordlist,
+  sv_wordlist,
+} from "../data/dictionaries";
 
 export const isSubset = (subset: string, set: string): boolean => {
   const setArray = [...set];
@@ -66,9 +68,12 @@ export const levenshteinDistance = (
 };
 
 export const sortString = (word: string): string => {
-  return word.split('').sort((a, b) => a.localeCompare(b)).join('');
+  return word
+    .split("")
+    .sort((a, b) => a.localeCompare(b))
+    .join("");
 };
 
 export const getRandomArrayIndex = (array: string[]) => {
-  return Math.floor(Math.random() * array.length)
-}
+  return Math.floor(Math.random() * array.length);
+};

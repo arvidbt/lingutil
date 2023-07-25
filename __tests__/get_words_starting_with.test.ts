@@ -1,4 +1,4 @@
-import { WordLib } from "..";
+import { WordLib } from "../src";
 
 describe("getWordsStartingWith", () => {
   test("it should get all words beginning with the word 'funktionell'", () => {

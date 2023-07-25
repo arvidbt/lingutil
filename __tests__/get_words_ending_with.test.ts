@@ -1,4 +1,4 @@
-import { WordLib } from "..";
+import { WordLib } from "../src";
 describe("getWordsEndingWith", () => {
   test("it should get all words ending with the word 'funktionell'", () => {
     const result = new WordLib("sv").endsWith("funktionell");
