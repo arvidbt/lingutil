@@ -19,7 +19,7 @@ const svWords = new WordLib("sv");
 ```
 Now, you're ready to use wordlib for your own applications.
 
-# usage 📝
+## usage 📝
 1. Use it to check is a string is a word.
    ```javascript
    const res = enWords.isWord("word");
