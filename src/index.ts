@@ -23,10 +23,11 @@ class WordLib {
   }
 
   /**
-   * Returns a list of words that can be created from supplied letters.
+   * Returns a list of words that can be created from supplied letters. If length is supplied,
+   * only returns words of *n* length.
    */
-  containing(letters: string): string[] {
-    return getWordsContaining(letters, this.language);
+  containing(letters: string, length?: number): string[] {
+    return getWordsContaining(letters, this.language, length);
   }
 
   /**
@@ -79,10 +80,11 @@ class WordLib {
   }
 
   /**
-   * Returns a random word.
+   * Returns a random word. If length is supplied, returns a random number
+   * of length *n*.
    */
-  random(): string {
-    return getRandomWord(this.language);
+  random(length?: number): string {
+    return getRandomWord(this.language, length);
   }
 }
 

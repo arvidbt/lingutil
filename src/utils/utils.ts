@@ -62,3 +62,7 @@ export const levenshteinDistance = (
 export const sortString = (word: string): string => {
   return word.split('').sort((a, b) => a.localeCompare(b)).join('');
 };
+
+export const getRandomArrayIndex = (array: string[]) => {
+  return Math.floor(Math.random() * array.length)
+}

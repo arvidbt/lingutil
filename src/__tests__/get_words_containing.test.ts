@@ -9,4 +9,9 @@ describe("getWordsContaining", () => {
     const result = new WordLib("sv").containing("");
     expect(result).toEqual([]);
   });
+
+  test("it should only return words of length 4", () => {
+    const result = new WordLib("sv").containing("svenska", 4);
+    expect(result.every(word => word.length === 4)).toBe(true);
+  })
 });
