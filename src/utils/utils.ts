@@ -1,7 +1,5 @@
 import {
-  es_wordlist,
   en_wordlist,
-  fr_wordlist,
   sv_wordlist,
 } from "../data/dictionaries";
 
@@ -22,16 +20,12 @@ export const isSubset = (subset: string, set: string): boolean => {
   return match === subset.length;
 };
 
-export const pickDictionary = (language: "sv" | "en" | "fr" | "es") => {
+export const pickDictionary = (language: "sv" | "en") => {
   switch (language) {
     case "sv":
       return sv_wordlist;
     case "en":
       return en_wordlist;
-    case "fr":
-      return fr_wordlist;
-    case "es":
-      return es_wordlist;
     default:
       throw new Error("Invalid language specified");
   }

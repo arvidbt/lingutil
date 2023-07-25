@@ -3,7 +3,7 @@ import { similar } from "./is_similar";
 
 export const getSimilarWords = (
   word: string,
-  language: "sv" | "en" | "fr" | "es"
+  language: "sv" | "en"
 ): string[] => {
   if (word.trim().length == 0) {
     return [];

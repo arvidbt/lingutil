@@ -2,7 +2,7 @@ import { pickDictionary } from "../utils/utils";
 
 export const getWordsEndingWith = (
   word: string,
-  language: "sv" | "en" | "fr" | "es"
+  language: "sv" | "en"
 ): string[] => {
   const wordList = pickDictionary(language);
   return wordList.filter(

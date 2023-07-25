@@ -1,6 +1,6 @@
 import { pickDictionary, sortString } from "../utils/utils";
 
-export const getAnagrams = (word: string, language: "sv" | "en" | "fr" | "es"): string[] => {
+export const getAnagrams = (word: string, language: "sv" | "en"): string[] => {
   const wordlist = pickDictionary(language);
   const result = [];
   const sortedWord = sortString(word);
