@@ -1,7 +1,7 @@
-# wordlib.
+# wordlib 📚
 Small package for playing around with Swedish-and English words and abbreviations.
 
-# installation & usage.
+## installation 📦
 To use the package, first install it:
 ```bash
 TODO.
@@ -17,7 +17,9 @@ const enWords = new WordLib("en");
 // For Swedish,
 const svWords = new WordLib("sv");
 ```
-Now, you're ready to use wordlib for your own applications. You can:
+Now, you're ready to use wordlib for your own applications.
+
+# usage 📝
 1. Use it to check is a string is a word.
    ```javascript
    const res = enWords.isWord("word");
