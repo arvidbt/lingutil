@@ -68,6 +68,6 @@ The wordlib package defaults to using a Swedish or English dictionary but is not
 const customWords = new WordLib(["my", "own", "dictionary"]);
 
 const defaultWords = new WordLib("en");
-const randomPalindrome = defaultWords.random((defaultWords.palindromes()))
+const randomPalindrome = defaultWords.random(5, defaultWords.palindromes())
 
 ```
