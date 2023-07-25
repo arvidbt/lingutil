@@ -1,13 +1,17 @@
-import { pickDictionary, getRandomArrayIndex } from "../utils/utils";
+import { getRandomArrayIndex } from "../utils/utils";
 
-export const getRandomWord = (language: "sv" | "en", length?: number): string => {
-    const wordlist = pickDictionary(language);
-    if (length) {
-        const wordsOfLength = wordlist.filter(word => word.length === length);
-        if (wordsOfLength.length === 0) {
-            return `No words of length ${length}`;
-        }
-        return wordsOfLength[getRandomArrayIndex(wordsOfLength)];
+export const getRandomWord = (
+  dictionary: string[],
+  length?: number,
+  customDictionary?: string[]
+): string => {
+  const wordlist = customDictionary ? customDictionary : dictionary;
+  if (length) {
+    const wordsOfLength = wordlist.filter((word) => word.length === length);
+    if (wordsOfLength.length === 0) {
+      return `No words of length ${length}`;
     }
-    return wordlist[getRandomArrayIndex(wordlist)];
-}
+    return wordsOfLength[getRandomArrayIndex(wordsOfLength)];
+  }
+  return wordlist[getRandomArrayIndex(wordlist)];
+};

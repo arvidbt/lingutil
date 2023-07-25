@@ -1,10 +1,9 @@
-import { pickDictionary } from "../utils/utils";
-
 export const getPalindromes = (
-  language: "sv" | "en",
-  length?: number
+  dictionary: string[],
+  length?: number,
+  customDictionary?: string[]
 ): string[] => {
-  const wordlist = pickDictionary(language);
+  const wordlist = customDictionary ? customDictionary : dictionary;
   const result = [];
   for (const word of wordlist) {
     if (word.length > 2) {

@@ -1,9 +1,8 @@
-import { pickDictionary } from "../utils/utils";
-
 export const getWordsOfLengthN = (
   len_n: number,
-  language: "sv" | "en"
+  dictionary: string[],
+  customDictionary?: string[]
 ): string[] => {
-  const wordList = pickDictionary(language);
-  return wordList.filter((word) => word.length === len_n);
+  const wordlist = customDictionary ? customDictionary : dictionary;
+  return wordlist.filter((word) => word.length === len_n);
 };

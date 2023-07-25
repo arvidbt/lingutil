@@ -1,11 +1,10 @@
-import { pickDictionary } from "../utils/utils";
-
 export const getWordsEndingWith = (
   word: string,
-  language: "sv" | "en"
+  dictionary: string[],
+  customDictionary?: string[]
 ): string[] => {
-  const wordList = pickDictionary(language);
-  return wordList.filter(
+  const wordlist = customDictionary ? customDictionary : dictionary;
+  return wordlist.filter(
     (key) =>
       key.endsWith(word.toLowerCase()) &&
       key.toLowerCase() !== word.toLowerCase()

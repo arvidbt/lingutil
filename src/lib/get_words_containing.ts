@@ -1,15 +1,16 @@
-import { isSubset, pickDictionary, sortString } from "../utils/utils";
+import { isSubset, sortString } from "../utils/utils";
 
  export const getWordsContaining = (
   letters: string,
-  language: "sv" | "en",
-  length?: number
+  dictionary: string[],
+  length?: number,
+  customDictionary?: string[]
 ): string[] => {
-  const wordList = pickDictionary(language)
+  const wordlist = customDictionary ? customDictionary : dictionary;
   const sortedLetters = sortString(letters.toLowerCase());
   const result: string[] = [];
 
-  for (const word of wordList) {
+  for (const word of wordlist) {
     if (word.length > sortedLetters.length) {
       return result;
     }

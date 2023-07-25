@@ -1,7 +1,8 @@
-import { pickDictionary } from "../utils/utils";
-
-export const isWord = (word: string, language: "sv" | "en"
+export const isWord = (
+  word: string,
+  dictionary: string[],
+  customDictionary?: string[]
 ): boolean => {
-  const wordList = pickDictionary(language);
-  return wordList.includes(word.toLowerCase())
+  const wordlist = customDictionary ? customDictionary : dictionary;
+  return wordlist.includes(word.toLowerCase());
 };
