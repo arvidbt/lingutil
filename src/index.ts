@@ -1,13 +1,13 @@
-import { isWord } from "./functions/is_word";
-import { getWordsContaining } from "./functions/get_words_containing";
-import { getWordsStartingWith } from "./functions/get_words_starting_with";
-import { getWordsEndingWith } from "./functions/get_words_ending_with";
-import { getWordsOfLengthN } from "./functions/get_words_of_length_n";
-import { getSimilarWords } from "./functions/get_similiar_words";
-import { getAnagrams } from "./functions/get_anagrams";
-import { getPalindromes } from "./functions/get_palindromes";
-import { similar } from "./functions/is_similar";
-import { getRandomWord } from "./functions/get_random_word";
+import { isWord } from "./lib/is_word";
+import { getWordsContaining } from "./lib/get_words_containing";
+import { getWordsStartingWith } from "./lib/get_words_starting_with";
+import { getWordsEndingWith } from "./lib/get_words_ending_with";
+import { getWordsOfLengthN } from "./lib/get_words_of_length_n";
+import { getSimilarWords } from "./lib/get_similiar_words";
+import { getAnagrams } from "./lib/get_anagrams";
+import { getPalindromes } from "./lib/get_palindromes";
+import { similar } from "./lib/is_similar";
+import { getRandomWord } from "./lib/get_random_word";
 
 class WordLib {
   private language: "sv" | "en";
