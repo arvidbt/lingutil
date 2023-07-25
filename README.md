@@ -63,7 +63,7 @@ Now, you're ready to use wordlib for your own applications. You can:
    // Random word of length 20?
    const res = enWords.random(20);
    ```
-The wordlib package defaults to using a Swedish or English dictionary but is not limited to using only them. When creating the wordlib object, you can instead of supplying a language setting supply your own wordlist. It must be an array of string, though. This option is also possible for each function, allowing you to combine and nest the functions.
+The wordlib package ships with a Swedish and English dictionary but is not limited to using only them. When creating the wordlib object, you can instead of supplying a language setting supply your own wordlist. It must be an array of string, though. This option is also possible for each function, allowing you to combine and nest the functions.
 ```javascript
 const customWords = new WordLib(["my", "own", "dictionary"]);
 
