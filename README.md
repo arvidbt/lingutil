@@ -1,5 +1,7 @@
 # wordlib 📚
-![Tests](https://github.com/arvidbt/wordlib/blob/main/.github/workflows/test.yml/badge.svg)
+[![Test](https://github.com/arvidbt/wordlib/actions/workflows/test.yml/badge.svg)](https://github.com/arvidbt/wordlib/actions/workflows/test.yml/badge.svg)
+
+
 
 Small package for playing around with Swedish-and English words and abbreviations.
 
