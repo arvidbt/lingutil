@@ -8,24 +8,25 @@ import { getAnagrams } from "./lib/get_anagrams";
 import { getPalindromes } from "./lib/get_palindromes";
 import { similar } from "./lib/is_similar";
 import { getRandomWord } from "./lib/get_random_word";
-import { pickDictionary } from "./utils/utils";
+import { selectDefaultDictionary, pickDictionary } from "./utils/utils";
 
-class WordLib {
+export class WordLib {
   private dictionary: string[];
+
   constructor(language?: "sv" | "en", customDictionary?: string[]) {
     if (!language && !customDictionary) {
       throw new Error("At least one of 'language' or 'customDictionary' must be supplied.");
     }
 
     // defaults to english.
-    this.dictionary = customDictionary ? customDictionary : pickDictionary(language || "en");
+    this.dictionary = customDictionary ? customDictionary : selectDefaultDictionary(language || "en");
   }
 
   /**
    * Checks if a string is a word.
    */
   isWord(word: string, customDictionary?: string[]): boolean {
-    return isWord(word, this.dictionary, customDictionary);
+    return isWord(word, pickDictionary(this.dictionary, customDictionary));
   }
 
   /**
@@ -33,49 +34,49 @@ class WordLib {
    * only returns words of *n* length.
    */
   containing(letters: string, length?: number, customDictionary?: string[]): string[] {
-    return getWordsContaining(letters, this.dictionary, length, customDictionary);
+    return getWordsContaining(letters, pickDictionary(this.dictionary, customDictionary), length);
   }
 
   /**
    * Returns a list of words that starts with supplied word.
    */
   startsWith(word: string, customDictionary?: string[]): string[] {
-    return getWordsStartingWith(word, this.dictionary, customDictionary);
+    return getWordsStartingWith(word, pickDictionary(this.dictionary, customDictionary));
   }
 
   /**
    * Returns a list of words that ends with supplied word.
    */
   endsWith(word: string, customDictionary?: string[]): string[] {
-    return getWordsEndingWith(word, this.dictionary, customDictionary);
+    return getWordsEndingWith(word, pickDictionary(this.dictionary, customDictionary));
   }
 
   /**
    * Returns a list of words that is of desired length.
    */
   ofLength(length: number, customDictionary?: string[]): string[] {
-    return getWordsOfLengthN(length, this.dictionary, customDictionary);
+    return getWordsOfLengthN(length, pickDictionary(this.dictionary, customDictionary));
   }
 
   /**
    * Returns a list of words that are similar to supplied word.
    */
   similarTo(word: string, customDictionary?: string[]): string[] {
-    return getSimilarWords(word, this.dictionary, customDictionary);
+    return getSimilarWords(word, pickDictionary(this.dictionary, customDictionary));
   }
 
   /**
    * Returns a list of anagrams to supplied word.
    */
   anagramsOf(word: string, customDictionary?: string[]): string[] {
-    return getAnagrams(word, this.dictionary, customDictionary);
+    return getAnagrams(word, pickDictionary(this.dictionary, customDictionary));
   }
 
   /**
    * Returns palindromes. If length is supplied, only palindromes of *n* length is returned.
    */
   palindromes(length?: number, customDictionary?: string[]): string[] {
-    return getPalindromes(this.dictionary, length, customDictionary);
+    return getPalindromes(pickDictionary(this.dictionary, customDictionary), length);
   }
 
   /**
@@ -90,10 +91,6 @@ class WordLib {
    * of length *n*.
    */
   random(length?: number, customDictionary?: string[]): string {
-    return getRandomWord(this.dictionary, length, customDictionary);
+    return getRandomWord(pickDictionary(this.dictionary, customDictionary), length);
   }
-}
-
-export {
-  WordLib
 }

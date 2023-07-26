@@ -1,4 +1,6 @@
 # wordlib 📚
+![Tests](https://github.com/arvidbt/wordlib/blob/main/.github/workflows/test.yml/badge.svg)
+
 Small package for playing around with Swedish-and English words and abbreviations.
 
 ## installation 📦

@@ -1,10 +1,8 @@
 export const getWordsEndingWith = (
   word: string,
-  dictionary: string[],
-  customDictionary?: string[]
+  dictionary: string[]
 ): string[] => {
-  const wordlist = customDictionary ? customDictionary : dictionary;
-  return wordlist.filter(
+  return dictionary.filter(
     (key) =>
       key.endsWith(word.toLowerCase()) &&
       key.toLowerCase() !== word.toLowerCase()

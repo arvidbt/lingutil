@@ -1,8 +1,6 @@
 export const getWordsOfLengthN = (
   len_n: number,
-  dictionary: string[],
-  customDictionary?: string[]
+  dictionary: string[]
 ): string[] => {
-  const wordlist = customDictionary ? customDictionary : dictionary;
-  return wordlist.filter((word) => word.length === len_n);
+  return dictionary.filter((word) => word.length === len_n);
 };

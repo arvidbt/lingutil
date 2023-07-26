@@ -1,8 +1,3 @@
-export const isWord = (
-  word: string,
-  dictionary: string[],
-  customDictionary?: string[]
-): boolean => {
-  const wordlist = customDictionary ? customDictionary : dictionary;
-  return wordlist.includes(word.toLowerCase());
+export const isWord = (word: string, dictionary: string[]): boolean => {
+  return dictionary.includes(word.toLowerCase());
 };

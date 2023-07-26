@@ -20,7 +20,7 @@ export const isSubset = (subset: string, set: string): boolean => {
   return match === subset.length;
 };
 
-export const pickDictionary = (language: "sv" | "en") => {
+export const selectDefaultDictionary = (language: "sv" | "en") => {
   switch (language) {
     case "sv":
       return sv_wordlist;
@@ -71,3 +71,7 @@ export const sortString = (word: string): string => {
 export const getRandomArrayIndex = (array: string[]) => {
   return Math.floor(Math.random() * array.length);
 };
+
+export const pickDictionary = (defaultDictionary: string[], customDictionary?: string[]) => {
+  return customDictionary ? customDictionary : defaultDictionary;
+}

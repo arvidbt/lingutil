@@ -1,10 +1,8 @@
 export const getWordsStartingWith = (
   word: string,
-  dictionary: string[],
-  customDictionary?: string[]
+  dictionary: string[]
 ): string[] => {
-  const wordlist = customDictionary ? customDictionary : dictionary;
-  return wordlist.filter(
+  return dictionary.filter(
     (key) =>
       key.startsWith(word.toLowerCase()) &&
       key.toLowerCase() !== word.toLowerCase()
