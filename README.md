@@ -1,5 +1,10 @@
 # wordlib 📚
 [![Test](https://github.com/arvidbt/wordlib/actions/workflows/test.yml/badge.svg)](https://github.com/arvidbt/wordlib/actions/workflows/test.yml/badge.svg)
+![GitHub](https://img.shields.io/github/license/arvidbt/wordlib)
+![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/arvidbt/wordlib)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/arvidbt/wordlib)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+
 
 
 
