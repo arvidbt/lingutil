@@ -5,7 +5,7 @@
 
 Small package for playing around with Swedish-and English words and abbreviations.
 
-## installation 📦
+## Installation 📦
 To use the package, first install it:
 ```bash
 TODO.
@@ -23,51 +23,72 @@ const svWords = new WordLib("sv");
 ```
 Now, you're ready to use wordlib for your own applications.
 
-## usage 📝
-1. Use it to check is a string is a word.
+## Usage 📝
+#### `isWord()`
+> Check if a string is a word.
    ```javascript
    const res = enWords.isWord("word");
+   // => true
    ```
-2. Use it to see which words (and abbrevations) you can generate from the letters `ordw` (useful for Scrabble!):
+#### `containing()`
+> Use it to see which words (and abbrevations) you can generate from the letters `ordw` (useful for Scrabble!).
    ```javascript
    const res = enWords.containing("ordw");
+   // => ["word", ...]
 
    // Only of length 4?
    const res = enWords.containing("ordw", 4);
+   // => ["word", "drow"]
    ```
-3. Check which words starts with `word`:
+#### `startsWith()`
+> Check which words starts with `word`.
    ```javascript
    const res = enWords.startsWith("word");
+   // => ["words", ...]
    ```
-4. Similarly, check which words ends with `word`:
+#### `endsWith()`
+> Check which words ends with `word`:
    ```javascript
    const res = enWords.endsWith("word");
+   // => ["sword", ...]
    ```
-5. Ever wondered if there are words that are more than 40 characters long? Now you can:
+#### `ofLength()`
+> Ever wondered if there are words that are more than 40 characters long?
    ```javascript
    const res = enWords.ofLength(40);
    ```
-6. Can you rhyme anything with `Orange`? wordlib can:
+#### `similarTo()`
+> Can you rhyme anything with `Orange`?
    ```javascript
    const res = enWords.similarTo("orange");
+   // => ["sorage", ...]
    ```
-7. Also, is there any anagrams of `orange`?
+#### `anagramsOf()`
+> Also, is there any anagrams of `orange`?
    ```javascript
    const res = enWords.anagramsOf("orange");
+   // => ["onager"]
    ```
-8. Need a palidrome? There's plenty:
+#### `palindrome()`
+> Generates all palindromes in chosen dictionary. Use optional length argument
+> to only generate palindromes of certain length.
    ```javascript
    const res = enWords.palindromes();
+// => ["abba", ...]
 
    // Palindromes of length 10?
    const res = enWords.palindromes(10);
+   // => ["kinnikinnik"]
    ```
-9. A random word for a game of Hangman?
-      ```javascript
+#### `random()`
+> Returns a random word from dictionary. Optional length argument to only return words of desired length.
+  ```javascript
    const res = enWords.random();
+   // => "marcionitish"
 
    // Random word of length 20?
    const res = enWords.random(20);
+   // => "hydrotherapeutically"
    ```
 The wordlib package ships with a Swedish and English dictionary but is not limited to using only them. When creating the wordlib object, you can instead of supplying a language setting supply your own wordlist. It must be an array of string, though. This option is also possible for each function, allowing you to combine and nest the functions.
 ```javascript
