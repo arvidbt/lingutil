@@ -6,91 +6,213 @@ import { getWordsOfLengthN } from "./lib/get_words_of_length_n";
 import { getSimilarWords } from "./lib/get_similiar_words";
 import { getAnagrams } from "./lib/get_anagrams";
 import { getPalindromes } from "./lib/get_palindromes";
-import { similar } from "./lib/is_similar";
 import { getRandomWord } from "./lib/get_random_word";
 import { selectDefaultDictionary, pickDictionary } from "./utils/utils";
+
+type ConstructorArguments = {
+  language?: "sv" | "en";
+  customDictionary?: string[];
+};
+
+type CustomDictionary = {
+    customDictionary: string[];
+}
+
+type MultipleOptArgs = {
+    length?: number;
+    customDictionary?: string[];
+}
 
 export class WordLib {
   private dictionary: string[];
 
-  constructor(language?: "sv" | "en", customDictionary?: string[]) {
-    if (!language && !customDictionary) {
+  /**
+   * Constructor for creating a new WordLib object. If a custom dictionary is supplied, language property will be ignored.
+   * Defaults to english.
+   * @param args Object consisting of:
+   * - number `optArgs.language` - (**Optional**) Pick language for wordlib. Can either be `sv` or `en`.
+   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * 
+   * #### Example usage:
+   * ```javascript
+   * const enWords = new WordLib({language: "en"});
+   * const customWords = new WordLib({customDictionary: ["custom", "dictionary"]})
+   * ```
+   */
+  constructor(args?: ConstructorArguments) {
+    if (!args?.language && !args?.customDictionary) {
       throw new Error("At least one of 'language' or 'customDictionary' must be supplied.");
     }
 
     // defaults to english.
-    this.dictionary = customDictionary ? customDictionary : selectDefaultDictionary(language || "en");
+    this.dictionary = args.customDictionary ? args.customDictionary : selectDefaultDictionary(args.language || "en");
   }
 
   /**
-   * Checks if a string is a word.
+   * Returns a boolean value depending on if a word exists in dictionary.
+   * @param word Word to look up.
+   * @param optArgs Object consisting of:
+   * - `string[]` optArgs.customDictionary - (**Optional**) A custom dictionary as an array of strings.
+   * @returns True if word exists in dictionary, otherwise false.
+   * #### Example usage:
+   * ```javascript
+   * const enWords = new WordLib({language: "en"});
+   * const res = enWords.isWord("word")
+   * //=> true
+   * ```
    */
-  isWord(word: string, customDictionary?: string[]): boolean {
-    return isWord(word, pickDictionary(this.dictionary, customDictionary));
+  isWord(word: string, customDictionary?: CustomDictionary): boolean {
+    return isWord(word, pickDictionary(this.dictionary, customDictionary?.customDictionary));
   }
 
   /**
-   * Returns a list of words that can be created from supplied letters. If length is supplied,
-   * only returns words of *n* length.
+   * Returns an array of words that can be formed using the supplied letters.
+   * @param letters Letters to form words from.
+   * @param optArgs Object consisting of:
+   * - number `optArgs.length` - (**Optional**) Only returns words of length n.
+   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @returns An array of words, made from supplied letters.
+   * #### Example usage:
+   * ```javascript
+   * const enWords = new WordLib({customDictionary: ["test", "set", "testing"]});
+   * const res = enWords.containing("estt");
+   * //=> ["test", "set"]
+   * ```
    */
-  containing(letters: string, length?: number, customDictionary?: string[]): string[] {
-    return getWordsContaining(letters, pickDictionary(this.dictionary, customDictionary), length);
+  containing(letters: string, optArgs?: MultipleOptArgs): string[] {
+    return getWordsContaining(letters, pickDictionary(this.dictionary, optArgs?.customDictionary), optArgs?.length);
   }
 
   /**
-   * Returns a list of words that starts with supplied word.
+   * Returns an array of words, all starting with specified word.
+   * @param word String that all words should start with.
+   * @param optArgs Object consisting of:
+   * - number `optArgs.length` - (**Optional**) The length of words returned.
+   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @returns An array of words, starting with specified word.
+   * #### Example usage:
+   * ```javascript
+   * const words = new WordLib({customDictionary: ["sword", "words"]});
+   * const res = words.startsWith("word");
+   * //=> ["words"]
+   * ```
    */
-  startsWith(word: string, customDictionary?: string[]): string[] {
-    return getWordsStartingWith(word, pickDictionary(this.dictionary, customDictionary));
+  startsWith(word: string, optArgs?: MultipleOptArgs): string[] {
+    return getWordsStartingWith(word, pickDictionary(this.dictionary, optArgs?.customDictionary), optArgs?.length);
   }
 
   /**
-   * Returns a list of words that ends with supplied word.
+   * Returns an array of words, all ending with specified word.
+   * @param word 
+   * @param optArgs
+   * @params `number` optArgs.length - (**Optional**) The length of something.
+   * @params `string[]` optArgs.customDictionary - (**Optional**) A custom dictionary as an array of strings.
+   * @returns 
+   * #### Example usage:
+   * ```javascript
+   * const words = new WordLib({customDictionary: ["sword", "words"]});
+   * const res = words.endsWith("word");
+   * //=> ["sword"]
+   * ```
    */
-  endsWith(word: string, customDictionary?: string[]): string[] {
-    return getWordsEndingWith(word, pickDictionary(this.dictionary, customDictionary));
+  endsWith(word: string, optArgs?: MultipleOptArgs): string[] {
+    return getWordsEndingWith(word, pickDictionary(this.dictionary, optArgs?.customDictionary), optArgs?.length);
   }
 
   /**
-   * Returns a list of words that is of desired length.
+   * Returns all words of specified length.
+   * @param customDictionary Object consisting of:
+   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @returns An array of words of length specified.
+   * #### Example usage:
+   * ```javascript
+   * const enWord = new WordLib({language: "en"});
+   * const res = enWord.ofLength(31);
+   * //=> ["dichlorodiphenyltrichloroethane"]
+   * ```
    */
-  ofLength(length: number, customDictionary?: string[]): string[] {
-    return getWordsOfLengthN(length, pickDictionary(this.dictionary, customDictionary));
+  ofLength(length: number, customDictionary?: CustomDictionary): string[] {
+    return getWordsOfLengthN(length, pickDictionary(this.dictionary, customDictionary?.customDictionary));
   }
 
   /**
-   * Returns a list of words that are similar to supplied word.
+   * Returns words that are similar (according to its *levenshtein distance*) to specified word.
+   * @param word Word to find similar words to.
+   * @param customDictionary Object consisting of:
+   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @returns An array of ll words which levenshtein distance is <= 2.
+   * #### Example usage:
+   * ```javascript
+   * const enWords = new WordLib({language: "en"});
+   * const res = enWords.similarTo("typescript");
+   * //=> [ 'telescript', 'typoscript', 'typescripts']
+   * ```
    */
-  similarTo(word: string, customDictionary?: string[]): string[] {
-    return getSimilarWords(word, pickDictionary(this.dictionary, customDictionary));
+  similarTo(word: string, customDictionary?: CustomDictionary): string[] {
+    return getSimilarWords(word, pickDictionary(this.dictionary, customDictionary?.customDictionary));
   }
 
   /**
-   * Returns a list of anagrams to supplied word.
+   * Finds any anagrams of specified word.
+   * @param word Word to find anagrams of.
+   * @param customDictionary Object consisting of:
+   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @returns An array of anagrams of specified word.
+   * #### Example usage:
+   * ```javascript
+   * const enWords = new WordLib({language: "en"});
+   * const res = enWords.anagramsOf("orange");
+   * //=> ["onager"]
+   * ```
    */
-  anagramsOf(word: string, customDictionary?: string[]): string[] {
-    return getAnagrams(word, pickDictionary(this.dictionary, customDictionary));
+  anagramsOf(word: string, customDictionary?: CustomDictionary): string[] {
+    return getAnagrams(word, pickDictionary(this.dictionary, customDictionary?.customDictionary));
   }
 
   /**
-   * Returns palindromes. If length is supplied, only palindromes of *n* length is returned.
+   * Returns all palindromes in dictiobary.
+   * @param optArgs Object consisting of:
+   * @params number `optArgs.length` - (**Optional**) Only return palindromes of length specified.
+   * @params string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @returns An array of palindromes.
+   * ```javascript
+   * const words = new WordLib({customDictionary: ["kinnikinnik", "sms", "orange"]});
+   * const res = words.palindromes(10);
+   * //=> ["kinnikinnik"]
+   * ```
    */
-  palindromes(length?: number, customDictionary?: string[]): string[] {
-    return getPalindromes(pickDictionary(this.dictionary, customDictionary), length);
+  palindromes(optArgs?: MultipleOptArgs): string[] {
+    return getPalindromes(pickDictionary(this.dictionary, optArgs?.customDictionary), optArgs?.length);
   }
 
   /**
-   * Checks if two strings are similar.
+   * Returns a random word from dictionary.
+   * @param optArgs
+   * - number `optArgs.length` - (**Optional**) The desired length of the random word.
+   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @returns A randomly chosen word.
+   * #### Example usage:
+   * ```javascript
+   * const enWords = new WordLib({language: "en"});
+   * const res = enWords.random();
+   * //=> "quiddle"
+   * ```
    */
-  isSimilar(word1: string, word2: string): boolean {
-    return similar(word1, word2);
+  random(optsArgs?: MultipleOptArgs): string {
+    return getRandomWord(pickDictionary(this.dictionary, optsArgs?.customDictionary), optsArgs?.length);
   }
 
   /**
-   * Returns a random word. If length is supplied, returns a random number
-   * of length *n*.
+   * Returns all words in dictionary.
+   * @returns An array of words.
+   * #### Example usage:
+   * ```javascript
+   * const words = new WordLib({customDictionary: ["a", "custom", "dictionary"]});
+   * const res = words.getDictionaryWords();
+   * //=> ["a", "custom", "dictionary"]
+   * ```
    */
-  random(length?: number, customDictionary?: string[]): string {
-    return getRandomWord(pickDictionary(this.dictionary, customDictionary), length);
+  getDictionaryWords() {
+    return this.dictionary;
   }
 }

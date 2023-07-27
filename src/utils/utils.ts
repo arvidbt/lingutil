@@ -75,3 +75,10 @@ export const getRandomArrayIndex = (array: string[]) => {
 export const pickDictionary = (defaultDictionary: string[], customDictionary?: string[]) => {
   return customDictionary ? customDictionary : defaultDictionary;
 }
+
+export const similar = (
+  word1: string,
+  word2: string,
+) => {
+    return levenshteinDistance(word1, word2) <= 2;
+};

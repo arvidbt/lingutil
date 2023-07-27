@@ -1,5 +1,4 @@
-import { similar } from "./is_similar";
-
+import { similar } from "../utils/utils";
 export const getSimilarWords = (
   word: string,
   dictionary: string[]
@@ -7,5 +6,5 @@ export const getSimilarWords = (
   if (word.trim().length == 0) {
     return [];
   }
-  return dictionary.filter((similarWord) => similar(word, similarWord));
+  return dictionary.filter((similarWord) => similar(word, similarWord) && similarWord != word);
 };

@@ -12,12 +12,17 @@
     "levenshtein",
     "levenshtein distance",
     "palindrome",
+    "palindromes",
     "anagram",
+    "anagrams",
+    "word",
     "words",
     "similarity",
     "starting with",
     "ending with",
-    "linguistics"
+    "linguistics",
+    "dictionary",
+    "dictionaries"
   ],
   "scripts": {
     "test": "jest --verbose --detectOpenHandles -i",

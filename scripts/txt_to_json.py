@@ -1,6 +1,5 @@
 import json
 
-
 def txt_to_json():
     data = {}
     with open("fr.txt", "r") as txt_file:
