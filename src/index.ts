@@ -103,7 +103,7 @@ export class WordLib {
 
   /**
    * Returns an array of words, all ending with specified word.
-   * @param word 
+   * @param word String which all words should end with.
    * @param optArgs
    * @params `number` optArgs.length - (**Optional**) The length of something.
    * @params `string[]` optArgs.customDictionary - (**Optional**) A custom dictionary as an array of strings.
