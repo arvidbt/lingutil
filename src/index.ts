@@ -28,7 +28,7 @@ export class WordLib {
 
   /**
    * Constructor for creating a new WordLib object. If a custom dictionary is supplied, language property will be ignored.
-   * Defaults to english.
+   * Defaults to english if no argument is passed.
    * @param args Object consisting of:
    * - number `optArgs.language` - (**Optional**) Pick language for wordlib. Can either be `sv` or `en`.
    * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
@@ -40,12 +40,12 @@ export class WordLib {
    * ```
    */
   constructor(args?: ConstructorArguments) {
-    if (!args?.language && !args?.customDictionary) {
-      throw new Error("At least one of 'language' or 'customDictionary' must be supplied.");
+    if (args) {
+      this.dictionary = args.customDictionary ? args.customDictionary : selectDefaultDictionary(args.language || "en");
+    } else {
+      // default to using english dictionary.
+      this.dictionary = selectDefaultDictionary("en");
     }
-
-    // defaults to english.
-    this.dictionary = args.customDictionary ? args.customDictionary : selectDefaultDictionary(args.language || "en");
   }
 
   /**
