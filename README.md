@@ -17,8 +17,10 @@ import { WordLib } from "wordlib";
 Instantiate the class:
 ```javascript
 // For English,
-const enWords = new WordLib("en");
+const enWords = new WordLib({language: "en"});
 // For Swedish,
-const svWords = new WordLib("sv");
+const svWords = new WordLib({langugage: "sv"});
+// For custom dictionary,
+const customWords = new WordLib({customDictionary: ["custom", "dictionary"]});
 ```
 Now, you're ready to use wordlib for your own applications.
