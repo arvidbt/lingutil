@@ -18,7 +18,7 @@ type CustomDictionary = {
     customDictionary: string[];
 }
 
-type MultipleOptArgs = {
+type Multipleargs = {
     length?: number;
     customDictionary?: string[];
 }
@@ -51,7 +51,7 @@ export class WordLib {
   /**
    * Returns a boolean value depending on if a word exists in dictionary.
    * @param word Word to look up.
-   * @param optArgs Object consisting of:
+   * @param args Object consisting of:
    * - `string[]` customDictionary.customDictionary - (**Optional**) A custom dictionary as an array of strings.
    * @returns True if word exists in dictionary, otherwise false.
    * #### Example usage:
@@ -68,9 +68,9 @@ export class WordLib {
   /**
    * Returns an array of words that can be formed using the supplied letters.
    * @param letters Letters to form words from.
-   * @param optArgs Object consisting of:
-   * - number `optArgs.length` - (**Optional**) Only returns words of length n.
-   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @param args Object consisting of:
+   * - number `args.length` - (**Optional**) Only returns words of length n.
+   * - string[] `args.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
    * @returns An array of words, made from supplied letters.
    * #### Example usage:
    * ```javascript
@@ -79,16 +79,16 @@ export class WordLib {
    * //=> ["test", "set"]
    * ```
    */
-  containing(letters: string, optArgs?: MultipleOptArgs): string[] {
-    return getWordsContaining(letters, pickDictionary(this.dictionary, optArgs?.customDictionary), optArgs?.length);
+  containing(letters: string, args?: Multipleargs): string[] {
+    return getWordsContaining(letters, pickDictionary(this.dictionary, args?.customDictionary), args?.length);
   }
 
   /**
    * Returns an array of words, all starting with specified word.
    * @param word String that all words should start with.
-   * @param optArgs Object consisting of:
-   * - number `optArgs.length` - (**Optional**) The length of words returned.
-   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @param args Object consisting of:
+   * - number `args.length` - (**Optional**) The length of words returned.
+   * - string[] `args.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
    * @returns An array of words, starting with specified word.
    * #### Example usage:
    * ```javascript
@@ -97,16 +97,16 @@ export class WordLib {
    * //=> ["words"]
    * ```
    */
-  startsWith(word: string, optArgs?: MultipleOptArgs): string[] {
-    return getWordsStartingWith(word, pickDictionary(this.dictionary, optArgs?.customDictionary), optArgs?.length);
+  startsWith(word: string, args?: Multipleargs): string[] {
+    return getWordsStartingWith(word, pickDictionary(this.dictionary, args?.customDictionary), args?.length);
   }
 
   /**
    * Returns an array of words, all ending with specified word.
    * @param word String which all words should end with.
-   * @param optArgs
-   * @params `number` optArgs.length - (**Optional**) The length of something.
-   * @params `string[]` optArgs.customDictionary - (**Optional**) A custom dictionary as an array of strings.
+   * @param args
+   * @params `number` args.length - (**Optional**) The length of something.
+   * @params `string[]` args.customDictionary - (**Optional**) A custom dictionary as an array of strings.
    * @returns 
    * #### Example usage:
    * ```javascript
@@ -115,14 +115,14 @@ export class WordLib {
    * //=> ["sword"]
    * ```
    */
-  endsWith(word: string, optArgs?: MultipleOptArgs): string[] {
-    return getWordsEndingWith(word, pickDictionary(this.dictionary, optArgs?.customDictionary), optArgs?.length);
+  endsWith(word: string, args?: Multipleargs): string[] {
+    return getWordsEndingWith(word, pickDictionary(this.dictionary, args?.customDictionary), args?.length);
   }
 
   /**
    * Returns all words of specified length.
    * @param customDictionary Object consisting of:
-   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * - string[] `args.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
    * @returns An array of words of length specified.
    * #### Example usage:
    * ```javascript
@@ -139,7 +139,7 @@ export class WordLib {
    * Returns words that are similar (according to its *levenshtein distance*) to specified word.
    * @param word Word to find similar words to.
    * @param customDictionary Object consisting of:
-   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * - string[] `args.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
    * @returns An array of words which levenshtein distance is <= 2.
    * #### Example usage:
    * ```javascript
@@ -156,7 +156,7 @@ export class WordLib {
    * Finds any anagrams of specified word.
    * @param word Word to find anagrams of.
    * @param customDictionary Object consisting of:
-   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * - string[] `args.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
    * @returns An array of anagrams of specified word.
    * #### Example usage:
    * ```javascript
@@ -171,9 +171,9 @@ export class WordLib {
 
   /**
    * Returns all palindromes in dictiobary.
-   * @param optArgs Object consisting of:
-   * @params number `optArgs.length` - (**Optional**) Only return palindromes of length specified.
-   * @params string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @param args Object consisting of:
+   * @params number `args.length` - (**Optional**) Only return palindromes of length specified.
+   * @params string[] `args.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
    * @returns An array of palindromes.
    * ```javascript
    * const words = new WordLib({customDictionary: ["kinnikinnik", "sms", "orange"]});
@@ -181,15 +181,15 @@ export class WordLib {
    * //=> ["kinnikinnik"]
    * ```
    */
-  palindromes(optArgs?: MultipleOptArgs): string[] {
-    return getPalindromes(pickDictionary(this.dictionary, optArgs?.customDictionary), optArgs?.length);
+  palindromes(args?: Multipleargs): string[] {
+    return getPalindromes(pickDictionary(this.dictionary, args?.customDictionary), args?.length);
   }
 
   /**
    * Returns a random word from dictionary.
-   * @param optArgs
-   * - number `optArgs.length` - (**Optional**) The desired length of the random word.
-   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * @param args
+   * - number `args.length` - (**Optional**) The desired length of the random word.
+   * - string[] `args.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
    * @returns A randomly chosen word.
    * #### Example usage:
    * ```javascript
@@ -198,7 +198,7 @@ export class WordLib {
    * //=> "quiddle"
    * ```
    */
-  random(optsArgs?: MultipleOptArgs): string {
+  random(optsArgs?: Multipleargs): string {
     return getRandomWord(pickDictionary(this.dictionary, optsArgs?.customDictionary), optsArgs?.length);
   }
 
