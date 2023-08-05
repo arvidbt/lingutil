@@ -30,8 +30,8 @@ export class WordLib {
    * Constructor for creating a new WordLib object. If a custom dictionary is supplied, language property will be ignored.
    * Defaults to english if no argument is passed.
    * @param args Object consisting of:
-   * - number `optArgs.language` - (**Optional**) Pick language for wordlib. Can either be `sv` or `en`.
-   * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * - number `args.language` - (**Optional**) Pick language for wordlib. Can either be `sv` or `en`.
+   * - string[] `args.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
    * 
    * #### Example usage:
    * ```javascript
@@ -52,7 +52,7 @@ export class WordLib {
    * Returns a boolean value depending on if a word exists in dictionary.
    * @param word Word to look up.
    * @param optArgs Object consisting of:
-   * - `string[]` optArgs.customDictionary - (**Optional**) A custom dictionary as an array of strings.
+   * - `string[]` customDictionary.customDictionary - (**Optional**) A custom dictionary as an array of strings.
    * @returns True if word exists in dictionary, otherwise false.
    * #### Example usage:
    * ```javascript
@@ -140,7 +140,7 @@ export class WordLib {
    * @param word Word to find similar words to.
    * @param customDictionary Object consisting of:
    * - string[] `optArgs.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
-   * @returns An array of ll words which levenshtein distance is <= 2.
+   * @returns An array of words which levenshtein distance is <= 2.
    * #### Example usage:
    * ```javascript
    * const enWords = new WordLib({language: "en"});
