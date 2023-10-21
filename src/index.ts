@@ -8,6 +8,7 @@ import { getAnagrams } from "./lib/get_anagrams";
 import { getPalindromes } from "./lib/get_palindromes";
 import { getRandomWord } from "./lib/get_random_word";
 import { selectDefaultDictionary, pickDictionary } from "./utils/utils";
+import { getPossibleWords } from "./lib/get_possible_words";
 
 type ConstructorArguments = {
   language?: "sv" | "en";
@@ -15,13 +16,18 @@ type ConstructorArguments = {
 };
 
 type CustomDictionary = {
-    customDictionary: string[];
-}
+  customDictionary: string[];
+};
 
-type Multipleargs = {
-    length?: number;
-    customDictionary?: string[];
-}
+type LengthCustomDictionaryArgs = {
+  length?: number;
+  customDictionary?: string[];
+};
+
+type AllowedCharactersCustomDictionaryArgs = {
+  customDictionary?: string[];
+  allowedCharacters?: string[];
+};
 
 export class WordLib {
   private dictionary: string[];
@@ -32,7 +38,7 @@ export class WordLib {
    * @param args Object consisting of:
    * - number `args.language` - (**Optional**) Pick language for wordlib. Can either be `sv` or `en`.
    * - string[] `args.customDictionary` - (**Optional**) A custom dictionary as an array of strings.
-   * 
+   *
    * #### Example usage:
    * ```javascript
    * const enWords = new WordLib({language: "en"});
@@ -41,7 +47,9 @@ export class WordLib {
    */
   constructor(args?: ConstructorArguments) {
     if (args) {
-      this.dictionary = args.customDictionary ? args.customDictionary : selectDefaultDictionary(args.language || "en");
+      this.dictionary = args.customDictionary
+        ? args.customDictionary
+        : selectDefaultDictionary(args.language || "en");
     } else {
       // default to using english dictionary.
       this.dictionary = selectDefaultDictionary("en");
@@ -62,7 +70,10 @@ export class WordLib {
    * ```
    */
   isWord(word: string, customDictionary?: CustomDictionary): boolean {
-    return isWord(word, pickDictionary(this.dictionary, customDictionary?.customDictionary));
+    return isWord(
+      word,
+      pickDictionary(this.dictionary, customDictionary?.customDictionary)
+    );
   }
 
   /**
@@ -79,8 +90,12 @@ export class WordLib {
    * //=> ["test", "set"]
    * ```
    */
-  containing(letters: string, args?: Multipleargs): string[] {
-    return getWordsContaining(letters, pickDictionary(this.dictionary, args?.customDictionary), args?.length);
+  containing(letters: string, args?: LengthCustomDictionaryArgs): string[] {
+    return getWordsContaining(
+      letters,
+      pickDictionary(this.dictionary, args?.customDictionary),
+      args?.length
+    );
   }
 
   /**
@@ -97,8 +112,12 @@ export class WordLib {
    * //=> ["words"]
    * ```
    */
-  startsWith(word: string, args?: Multipleargs): string[] {
-    return getWordsStartingWith(word, pickDictionary(this.dictionary, args?.customDictionary), args?.length);
+  startsWith(word: string, args?: LengthCustomDictionaryArgs): string[] {
+    return getWordsStartingWith(
+      word,
+      pickDictionary(this.dictionary, args?.customDictionary),
+      args?.length
+    );
   }
 
   /**
@@ -107,7 +126,7 @@ export class WordLib {
    * @param args
    * @params `number` args.length - (**Optional**) The length of something.
    * @params `string[]` args.customDictionary - (**Optional**) A custom dictionary as an array of strings.
-   * @returns 
+   * @returns
    * #### Example usage:
    * ```javascript
    * const words = new WordLib({customDictionary: ["sword", "words"]});
@@ -115,8 +134,12 @@ export class WordLib {
    * //=> ["sword"]
    * ```
    */
-  endsWith(word: string, args?: Multipleargs): string[] {
-    return getWordsEndingWith(word, pickDictionary(this.dictionary, args?.customDictionary), args?.length);
+  endsWith(word: string, args?: LengthCustomDictionaryArgs): string[] {
+    return getWordsEndingWith(
+      word,
+      pickDictionary(this.dictionary, args?.customDictionary),
+      args?.length
+    );
   }
 
   /**
@@ -132,7 +155,10 @@ export class WordLib {
    * ```
    */
   ofLength(length: number, customDictionary?: CustomDictionary): string[] {
-    return getWordsOfLengthN(length, pickDictionary(this.dictionary, customDictionary?.customDictionary));
+    return getWordsOfLengthN(
+      length,
+      pickDictionary(this.dictionary, customDictionary?.customDictionary)
+    );
   }
 
   /**
@@ -149,7 +175,10 @@ export class WordLib {
    * ```
    */
   similarTo(word: string, customDictionary?: CustomDictionary): string[] {
-    return getSimilarWords(word, pickDictionary(this.dictionary, customDictionary?.customDictionary));
+    return getSimilarWords(
+      word,
+      pickDictionary(this.dictionary, customDictionary?.customDictionary)
+    );
   }
 
   /**
@@ -166,7 +195,10 @@ export class WordLib {
    * ```
    */
   anagramsOf(word: string, customDictionary?: CustomDictionary): string[] {
-    return getAnagrams(word, pickDictionary(this.dictionary, customDictionary?.customDictionary));
+    return getAnagrams(
+      word,
+      pickDictionary(this.dictionary, customDictionary?.customDictionary)
+    );
   }
 
   /**
@@ -181,8 +213,11 @@ export class WordLib {
    * //=> ["kinnikinnik"]
    * ```
    */
-  palindromes(args?: Multipleargs): string[] {
-    return getPalindromes(pickDictionary(this.dictionary, args?.customDictionary), args?.length);
+  palindromes(args?: LengthCustomDictionaryArgs): string[] {
+    return getPalindromes(
+      pickDictionary(this.dictionary, args?.customDictionary),
+      args?.length
+    );
   }
 
   /**
@@ -198,8 +233,11 @@ export class WordLib {
    * //=> "quiddle"
    * ```
    */
-  random(optsArgs?: Multipleargs): string {
-    return getRandomWord(pickDictionary(this.dictionary, optsArgs?.customDictionary), optsArgs?.length);
+  random(args?: LengthCustomDictionaryArgs): string {
+    return getRandomWord(
+      pickDictionary(this.dictionary, args?.customDictionary),
+      args?.length
+    );
   }
 
   /**
@@ -214,5 +252,27 @@ export class WordLib {
    */
   getDictionaryWords() {
     return this.dictionary;
+  }
+
+  /**
+   * Returns words that can be created from known characters and allowed characters. Questionmark (?) is used as a wildcard.
+   * @param word
+   * @param args Object consisting of:
+   * - string[] `CustomDictionary` - (**Optional**) A custom dictionary as an array of strings.
+   * - string[] `AllowedCharacters` - (**Optional**) An array of characters which are allowed to fill in the unknown characters.
+   * @returns An array of possible words.
+   * #### Example usage:
+   * ```javascript
+   * const words = new WordLib({language: "en"});
+   * const res = words.getPossibleWords("h?ll?", {allowedCharacters: ["e", "l", "a", "o"]});
+   * //=> [ "hollo", "hallo", "hello", "holla" ]
+   * ```
+   */
+  getPossibleWords(word: string, args?: AllowedCharactersCustomDictionaryArgs) {
+    return getPossibleWords(
+      word,
+      pickDictionary(this.dictionary, args?.customDictionary),
+      args?.allowedCharacters
+    );
   }
 }

@@ -1,7 +1,4 @@
-import {
-  en_wordlist,
-  sv_wordlist,
-} from "../data/dictionaries";
+import { en_wordlist, sv_wordlist } from "../data/dictionaries";
 
 export const isSubset = (subset: string, set: string): boolean => {
   const setArray = [...set];
@@ -72,13 +69,51 @@ export const getRandomArrayIndex = (array: string[]) => {
   return Math.floor(Math.random() * array.length);
 };
 
-export const pickDictionary = (defaultDictionary: string[], customDictionary?: string[]) => {
+export const pickDictionary = (
+  defaultDictionary: string[],
+  customDictionary?: string[]
+) => {
   return customDictionary ? customDictionary : defaultDictionary;
-}
+};
 
-export const similar = (
+export const similar = (word1: string, word2: string) => {
+  return levenshteinDistance(word1, word2) <= 2;
+};
+
+export const charactersMatchAtIndices = (
   word1: string,
   word2: string,
-) => {
-    return levenshteinDistance(word1, word2) <= 2;
+  indicesToMatch: number[]
+): boolean => {
+  if (word1.length !== word2.length) {
+    return false;
+  }
+
+  for (const index of indicesToMatch) {
+    if (word1[index] !== word2[index]) {
+      return false;
+    }
+  }
+  return true;
+};
+
+export const allowedCharactersMatchAtIndices = (
+  dictWord: string,
+  knownWildcardIndicies: number[],
+  allowedCharacters: string[]
+): boolean => {
+  if (allowedCharacters.length === 0) {
+    return false;
+  }
+
+  let matches = 0;
+  for (const index of knownWildcardIndicies) {
+    if (allowedCharacters.includes(dictWord.charAt(index))) {
+      matches++;
+    }
+  }
+  if (matches === knownWildcardIndicies.length) {
+    return true;
+  }
+  return false;
 };
