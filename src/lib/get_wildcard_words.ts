@@ -1,6 +1,10 @@
 import { countMatchingCharacters } from "../utils/utils";
 
-export const getWildcardWords = (letters: string, dictionary: string[]) => {
+export const getWildcardWords = (
+  letters: string,
+  dictionary: string[],
+  length?: number
+) => {
   const numberWildcards = letters.split("?").length - 1;
   const possibleWildcardWords: string[] = [];
 
@@ -9,7 +13,11 @@ export const getWildcardWords = (letters: string, dictionary: string[]) => {
       const matchingCharacters = countMatchingCharacters(word, letters);
 
       if (matchingCharacters + numberWildcards === word.length) {
-        possibleWildcardWords.push(word);
+        if (length && word.length === length) {
+          possibleWildcardWords.push(word);
+        } else if (!length) {
+          possibleWildcardWords.push(word);
+        }
       }
     }
   }

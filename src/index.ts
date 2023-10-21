@@ -257,7 +257,7 @@ export class WordLib {
 
   /**
    * Returns words that can be created from known characters and allowed characters. Questionmark (?) is used as a wildcard.
-   * @param word
+   * @param word String
    * @param args Object consisting of:
    * - string[] `CustomDictionary` - (**Optional**) A custom dictionary as an array of strings.
    * - string[] `AllowedCharacters` - (**Optional**) An array of characters which are allowed to fill in the unknown characters.
@@ -277,10 +277,25 @@ export class WordLib {
     );
   }
 
-  getWildcardWords(letters: string, args?: CustomDictionary) {
+  /**
+   * Returns words that can be created from a string of characters including wildcards (Marked as '*?*').
+   * @param letters Letters including wildcards which to form words from.
+   * @param args Object consisting of:
+   * - number `args.length` - (**Optional**) Only return words of length.
+   * - string[] `args.customDictionary` - (**Optional**) Return words from a custom dictionary.
+   * @returns An array of words that can be formed from characters including wildcards.
+   * #### Example usage:
+   * ```javascript
+   * const words = new WordLib({language: "en"});
+   * const res = words.getWildcardWords("te???rgrab", { length: 10 });
+   * //=> [ "ratbaggery", "begartered", "gubernator", "regretably", "bergmaster", "boragewort", "grubstaker", "tunaburger", "aberrating", "arbitrages", "regretable", "arbitrager" ]
+   * ```
+   */
+  getWildcardWords(letters: string, args?: LengthCustomDictionaryArgs) {
     return getWildcardWords(
       letters,
-      pickDictionary(this.dictionary, args?.customDictionary)
+      pickDictionary(this.dictionary, args?.customDictionary),
+      args?.length
     );
   }
 }

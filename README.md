@@ -18,7 +18,7 @@ npm i @arvidbt/wordlib
 Then, import it as:
 
 ```javascript
-import { WordLib } from "wordlib";
+import { WordLib } from "@arvidbt/wordlib";
 ```
 
 Instantiate the class:
