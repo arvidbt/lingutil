@@ -11,8 +11,10 @@ import { selectDefaultDictionary, pickDictionary } from "./utils/utils";
 import { getPossibleWords } from "./lib/get_possible_words";
 import { getWildcardWords } from "./lib/get_wildcard_words";
 
+type SupportedLanguages = "sv" | "en";
+
 type ConstructorArguments = {
-  language?: "sv" | "en";
+  language?: SupportedLanguages;
   customDictionary?: string[];
 };
 
@@ -55,6 +57,14 @@ export class WordLib {
       // default to using english dictionary.
       this.dictionary = selectDefaultDictionary("en");
     }
+  }
+
+  /**
+   * Sets the Wordlib class to a new language.
+   * @param language
+   */
+  setLanguage(language: SupportedLanguages) {
+    this.dictionary = selectDefaultDictionary(language);
   }
 
   /**
