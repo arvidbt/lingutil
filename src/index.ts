@@ -9,6 +9,7 @@ import { getPalindromes } from "./lib/get_palindromes";
 import { getRandomWord } from "./lib/get_random_word";
 import { selectDefaultDictionary, pickDictionary } from "./utils/utils";
 import { getPossibleWords } from "./lib/get_possible_words";
+import { getWildcardWords } from "./lib/get_wildcard_words";
 
 type ConstructorArguments = {
   language?: "sv" | "en";
@@ -273,6 +274,13 @@ export class WordLib {
       word,
       pickDictionary(this.dictionary, args?.customDictionary),
       args?.allowedCharacters
+    );
+  }
+
+  getWildcardWords(letters: string, args?: CustomDictionary) {
+    return getWildcardWords(
+      letters,
+      pickDictionary(this.dictionary, args?.customDictionary)
     );
   }
 }

@@ -117,3 +117,21 @@ export const allowedCharactersMatchAtIndices = (
   }
   return false;
 };
+
+export const countMatchingCharacters = (
+  word1: string,
+  word2: string
+): number => {
+  const minLength = Math.min(word1.length, word2.length);
+  let count = 0;
+
+  for (let i = 0; i < minLength; i++) {
+    const char = word1.charAt(i);
+    if (word2.includes(char)) {
+      count++;
+      word2 = word2.replace(char, "");
+    }
+  }
+
+  return count;
+};
