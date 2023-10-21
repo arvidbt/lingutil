@@ -7,16 +7,11 @@ import { getSimilarWords } from "./lib/get_similiar_words";
 import { getAnagrams } from "./lib/get_anagrams";
 import { getPalindromes } from "./lib/get_palindromes";
 import { getRandomWord } from "./lib/get_random_word";
-import { selectDefaultDictionary, pickDictionary } from "./utils/utils";
+import { pickDictionary } from "./utils/utils";
 import { getPossibleWords } from "./lib/get_possible_words";
 import { getWildcardWords } from "./lib/get_wildcard_words";
 
-type SupportedLanguages = "sv" | "en";
-
-type ConstructorArguments = {
-  language?: SupportedLanguages;
-  customDictionary?: string[];
-};
+type ConstructorArguments = string[];
 
 type CustomDictionary = {
   customDictionary: string[];
@@ -48,23 +43,8 @@ export class WordLib {
    * const customWords = new WordLib({customDictionary: ["custom", "dictionary"]})
    * ```
    */
-  constructor(args?: ConstructorArguments) {
-    if (args) {
-      this.dictionary = args.customDictionary
-        ? args.customDictionary
-        : selectDefaultDictionary(args.language || "en");
-    } else {
-      // default to using english dictionary.
-      this.dictionary = selectDefaultDictionary("en");
-    }
-  }
-
-  /**
-   * Sets the Wordlib class to a new language.
-   * @param language
-   */
-  setLanguage(language: SupportedLanguages) {
-    this.dictionary = selectDefaultDictionary(language);
+  constructor(args: ConstructorArguments) {
+    this.dictionary = args;
   }
 
   /**

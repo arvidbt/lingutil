@@ -1,5 +1,3 @@
-import { en_wordlist, sv_wordlist } from "../data/dictionaries";
-
 export const isSubset = (subset: string, set: string): boolean => {
   const setArray = [...set];
   let match = 0;
@@ -15,17 +13,6 @@ export const isSubset = (subset: string, set: string): boolean => {
     }
   }
   return match === subset.length;
-};
-
-export const selectDefaultDictionary = (language: "sv" | "en") => {
-  switch (language) {
-    case "sv":
-      return sv_wordlist;
-    case "en":
-      return en_wordlist;
-    default:
-      throw new Error("Invalid language specified");
-  }
 };
 
 export const levenshteinDistance = (
