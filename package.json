@@ -1,6 +1,6 @@
 {
   "name": "@arvidbt/wordlib",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A package for playing around with different dictionaries. Supports Swedish and English.",
   "main": "src/index.ts",
   "keywords": [
