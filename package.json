@@ -12,7 +12,7 @@
     "typedoc": "^0.24.8",
     "typescript": "^5.1.6"
   },
-  "description": "A package for playing around with different dictionaries. Supports Swedish and English.",
+  "description": "A package for playing around with different dictionaries.",
   "keywords": [
     "swedish",
     "english",
@@ -32,7 +32,9 @@
     "ending with",
     "linguistics",
     "dictionary",
-    "dictionaries"
+    "dictionaries",
+    "wordle",
+    "games"
   ],
   "license": "MIT",
   "scripts": {
